@@ -1,11 +1,15 @@
 package com.adrian.clases;
 
+import com.adrian.interfaz.Marco;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Tablero {
+    //declaración del objeto mimarco para interactuar con la interfaz
+    private Marco mimarco;
     /**
      * Método principal que llama a la creacion de las casillas y jugadores
      * y que crea el bucle de los turnos
@@ -28,7 +32,10 @@ public class Tablero {
         if (ventana == 0) {
             crearCasilla(listaCasillas);
             int nJugadores = crearJugadores(listaJugadores);
-
+            //instancia de mimarco
+            mimarco = new Marco();
+            mimarco.setVisible(true);
+            mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             boolean partida = true;
             //bucle que dura mientras no se cumpla una condición de victoria
             while (partida) {
@@ -134,13 +141,6 @@ public class Tablero {
         //condiciones que permiten al jugador recorrer las casillas de forma cíclica
         if (jugador.getPosicion() + avanzar > (listaCasillas.size() - 1)) {
             jugador.setPosicion(jugador.getPosicion() + avanzar - listaCasillas.size());
-
-        } else if (jugador.getPosicion() == (listaCasillas.size() - 1)) {
-            jugador.setPosicion(jugador.getPosicion() + avanzar - listaCasillas.size());
-
-        } else {
-            jugador.setPosicion(jugador.getPosicion() + avanzar);
-        }
 
     }
 }
